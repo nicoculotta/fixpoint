@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query"
-import { getProperties } from "../../../api/properties"
+import { PropertyService } from "../../../services/property/property.service"
 
 export const useProperties = (search?: string) => {
   const { data, isLoading, error } = useQuery({
     queryKey: ['properties', search],
-    queryFn: () => getProperties(search),
+    queryFn: () => PropertyService.getAll(search),
   })
 
   return { data, isLoading, error }

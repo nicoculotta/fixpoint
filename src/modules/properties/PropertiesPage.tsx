@@ -1,3 +1,4 @@
+import PropertiesTable from "./components/PropertiesTable"
 import { useProperties } from "./hooks/useProperties"
 
 
@@ -8,16 +9,15 @@ const PropertiesPage = () => {
   if (isLoading) return <div>Loading...</div>
   if (error) return <div>Error: {error.message}</div>
 
+
   return (
     <div>
       <h1>Properties</h1>
-      <ul>
-        {data.map((property) => (
-          <li key={property.id}>{property.name}</li>
-        ))}
-      </ul>
+      <PropertiesTable properties={data} />
     </div>
   )
 }
 
 export default PropertiesPage
+
+

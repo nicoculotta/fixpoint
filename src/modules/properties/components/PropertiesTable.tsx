@@ -1,14 +1,21 @@
 import type { Property } from '../../../types/properties'
 import { DataTable } from '../../../components/common/DataTable'
 import type { ColumnDef } from '@tanstack/react-table'
+import { Button } from '@/components/ui/button'
 
+interface PropertiesTableProps {
+  properties: Property[]
+  onPropertySelect: (propertyId: string) => void
+}
 
-const PropertiesTable = ({ properties }: { properties: Property[] }) => {
+const PropertiesTable = ({ properties, onPropertySelect }: PropertiesTableProps) => {
 
   const columns: ColumnDef<Property>[] = [
     {
       header: 'Nombre',
-      accessorKey: 'name',
+      cell: ({ row }) => {
+        return <Button variant="link" size="sm" onClick={() => onPropertySelect(row.original.id)}>{row.original.name}</Button>
+      },
     },
     {
       header: 'Dirección',
@@ -23,7 +30,7 @@ const PropertiesTable = ({ properties }: { properties: Property[] }) => {
       accessorKey: 'units',
     },
     {
-      header: 'ID del manager',
+      header: 'Responsable',
       accessorKey: 'managerId',
     },
   ]

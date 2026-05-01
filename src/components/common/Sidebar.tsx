@@ -7,6 +7,8 @@ type NavItem = {
 
 const NAV_ITEMS: NavItem[] = [
   { to: "/", label: "Propiedades" },
+  { to: "/incidents", label: "Incidentes" },
+  { to: "employees", label: "Empleados" },
 ];
 
 export const Sidebar = () => {
@@ -30,7 +32,7 @@ export const Sidebar = () => {
               [
                 "rounded-md px-3 py-2 text-sm font-medium transition-colors",
                 isActive
-                  ? "bg-stone-900 text-white"
+                  ? "bg-stone-100"
                   : "text-stone-700 hover:bg-stone-100",
               ].join(" ")
             }

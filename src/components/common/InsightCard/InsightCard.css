@@ -1,0 +1,9 @@
+@reference "../../../index.css";
+
+.insight-card {
+  @apply rounded-lg shadow-md p-6;
+}
+
+.insight-card-icon {
+  @apply flex items-center justify-center bg-stone-900/5 h-12 w-12 rounded-full;
+}

@@ -27,7 +27,7 @@ export const getIncidentById = http.get('/api/incidents/:id',
 
     if (!incident) {
       return HttpResponse.json(
-        { message: 'Property not found' },
+        { message: 'Incident not found' },
         { status: 404 }
       )
     }
@@ -109,10 +109,21 @@ export const deleteIncident = http.delete(
   }
 )
 
+export const getDataInsights = http.get('/api/incidents/analytics/insights', async () => {
+  await delay(500)
+  return HttpResponse.json({
+    totalIncidents: incidents.length,
+    totalPending: incidents.filter((incident) => incident.status === 'pending').length,
+    totalInProgress: incidents.filter((incident) => incident.status === 'in_progress').length,
+    totalOverDue: incidents.filter((incident) => incident.dueDate && new Date(incident.dueDate) < new Date()).length,
+  })
+})
+
 export const incidentHandlers = [
   getIncidents,
   getIncidentById,
   createIncident,
   updateIncident,
   deleteIncident,
+  getDataInsights,
 ]

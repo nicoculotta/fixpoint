@@ -9,8 +9,12 @@ export const getProperties = http.get('/api/properties', async ({ request }) => 
   let filtered = properties
 
   if (search) {
-    filtered = properties.filter((property) =>
-      property.name.toLowerCase().includes(search.toLowerCase())
+    const q = search.toLowerCase()
+    filtered = properties.filter(
+      (property) =>
+        property.name.toLowerCase().includes(q) ||
+        property.address.toLowerCase().includes(q) ||
+        property.city.toLowerCase().includes(q)
     )
   }
   return HttpResponse.json(filtered)

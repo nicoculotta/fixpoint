@@ -3,11 +3,9 @@ import axios from 'axios'
 
 export const PropertyService = {
   getAll: async (search?: string): Promise<Property[]> => {
-    const query = search
-      ? `?search=${search}`
-      : ''
-
-    const response = await axios.get(`/api/properties${query}`)
+    const response = await axios.get('/api/properties', {
+      params: search ? { search } : undefined,
+    })
 
     if (response.status !== 200) {
       throw new Error('Failed to fetch properties')
